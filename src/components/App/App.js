@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { getUrls } from '../../apiCalls';
-import UrlContainer from '../UrlContainer/UrlContainer';
-import UrlForm from '../UrlForm/UrlForm';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { getUrls } from "../../apiCalls";
+import UrlContainer from "../UrlContainer/UrlContainer";
+import UrlForm from "../UrlForm/UrlForm";
 
-function App () {
+function App() {
   const [urls, setUrls] = useState([]);
 
   useEffect(() => {
-//  get urls go here
-  })
+    getUrls().then((data) => {
+      console.log(data);
+      setUrls(data);
+    });
+  }, []);
 
   return (
     <main className="App">
@@ -18,7 +21,7 @@ function App () {
         <UrlForm />
       </header>
 
-      <UrlContainer urls={"<<<Urls should go here>>>"}/>
+      <UrlContainer urls={urls} />
     </main>
   );
 }
